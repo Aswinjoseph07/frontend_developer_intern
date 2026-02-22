@@ -5,7 +5,7 @@ exports.createTask = (req, res) => {
   const { title, description } = req.body
 
   const sql =
-    "INSERT INTO tasks (title,description,user_id) VALUES (?,?,?)"
+    "INSERT INTO tasks (title,completed,user_id) VALUES (?,?,?)"
 
   db.query(sql, [title, description, req.user.id], (err) => {
 
@@ -37,10 +37,12 @@ exports.getTasks = (req, res) => {
 
 exports.updateTask = (req, res) => {
 
-  const { title, description } = req.body
+ const { completed } = req.body;
 
-  const sql =
-    "UPDATE tasks SET title=?,description=? WHERE id=?"
+ db.query(
+"UPDATE tasks SET completed=? WHERE id=?",
+[completed, req.params.id]
+);
 
   db.query(sql, [title, description, req.params.id], (err) => {
 
