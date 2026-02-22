@@ -6,7 +6,6 @@ import TaskCard from "../components/TaskCard"
 function Dashboard(){
 
 const [tasks,setTasks] = useState([])
-const [search,setSearch] = useState("")
 const [filter,setFilter] = useState("all")
 const [taskText,setTaskText] = useState("")
 
@@ -56,11 +55,7 @@ const deleteTask = async (id)=>{
 }
 
 const filteredTasks = tasks
-.filter(task =>
- (task.description || "")
- .toLowerCase()
- .includes(search.toLowerCase())
-)
+
 .filter(task=>{
  if(filter==="complete") return task.completed
  if(filter==="incomplete") return !task.completed
@@ -97,12 +92,7 @@ Add
 
 {/* Search */}
 
-<input
-placeholder="Search tasks"
-value={search}
-onChange={(e)=>setSearch(e.target.value)}
-className="border p-2 rounded"
-/>
+
 
 {/* Filter */}
 
