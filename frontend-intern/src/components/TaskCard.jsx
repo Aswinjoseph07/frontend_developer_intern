@@ -4,7 +4,7 @@ return (
 
 <div className="bg-white border rounded-xl p-4 shadow-sm flex justify-between items-center">
 
-<div>
+<div className="flex flex-col m-2">
 
 <h2 className={`font-semibold ${task.completed ? "line-through text-gray-400" : ""}`}>
 {task.title}
